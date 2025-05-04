@@ -30,9 +30,11 @@ plt.xlabel('Number of Clusters (k)')
 plt.ylabel('WCSS')
 plt.show()
 
+scaler = StandardScaler()
+x_scaled = scaler.fit_transform(x)
 
-kmeans_noscaling = KMeans(n_clusters=2, init='k-means++', random_state=42)
-y_predict = kmeans_noscaling.fit_predict(x)
+kmeans_scaling = KMeans(n_clusters=2, init='k-means++', random_state=42)
+y_predict = kmeans_scaling.fit_predict(x_scaled)
 
 
 plt.figure(figsize=(8, 6))
@@ -46,6 +48,6 @@ for cluster in np.unique(y_predict):
 
 plt.xlabel('Mileage')
 plt.ylabel('Maintenance Cost')
-plt.title('K-Means Clustering (No Scaling)')
+plt.title('K-Means Clustering (Scaling)')
 plt.legend()
 plt.show()
